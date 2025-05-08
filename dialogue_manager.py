@@ -1,11 +1,30 @@
 # dialogue_manager.py
 from emotion_recognition import get_user_emotion
 from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
+from furhat_remote_api import FurhatRemoteAPI
+import random
+import time
+# furhat = FurhatRemoteAPI("localhost")
+# # 加载模型和tokenizer（只加载一次）
+# model_name = "facebook/blenderbot-400M-distill"
+# tokenizer = BlenderbotTokenizer.from_pretrained(model_name)
+# model = BlenderbotForConditionalGeneration.from_pretrained(model_name)
 
-# 加载模型和tokenizer（只加载一次）
-model_name = "facebook/blenderbot-400M-distill"
-tokenizer = BlenderbotTokenizer.from_pretrained(model_name)
-model = BlenderbotForConditionalGeneration.from_pretrained(model_name)
+
+def apply_state_gesture(furhat, state):
+    positive_gestures = ["BigSmile", "Smile", "Nod", "BrowRaise"]
+    negative_gestures = ["BrowFrown", "ExpressSad", "ExpressFear", "Thoughtful"]
+
+    if state == "comfort":
+        gesture = random.choice(negative_gestures)
+    elif state == "support":
+        gesture = random.choice(positive_gestures)
+    else:
+        print(f"[Warning] Unknown state: {state}, no gesture applied.")
+        return
+
+    print(f"[Gesture] Applying gesture '{gesture}' for state '{state}'")
+    furhat.gesture(name=gesture)
 
 def chatbot_response(user_input, style):
     """
@@ -16,18 +35,16 @@ def chatbot_response(user_input, style):
     """
     print(style)
     if style == "warm":
-        print("进入warm")
+        print("start warm style")
         prompt = "You are a warm, empathetic coach. Respond kindly to: " + user_input
     else:
-        print("进入中立")
+        print("start neutral style")
         prompt = "You are a neutral, professional coach. Respond objectively to: " + user_input
 
     inputs = tokenizer(prompt, return_tensors="pt")
     reply_ids = model.generate(**inputs)
     response = tokenizer.decode(reply_ids[0], skip_special_tokens=True)
     return response
-
-
 
 class DialogueManager:
     def __init__(self):
@@ -62,26 +79,22 @@ class DialogueManager:
             self.session_state = "comfort"
         print(f"[State Update] Current state: {self.session_state}")
 
+
     def generate_response(self, user_input):
         """综合处理用户输入 → 返回 chatbot 生成的回应"""
-        # 1️⃣ 检查是否有风格切换指令
-        # style_command = self.parse_style_command(user_input)
-        # style_message = self.update_style(user_input)
 
-        # self.detect_emotion_and_update_state(user_input)
-        # style_message = self.update_style(self.session_state)
+        self.detect_emotion_and_update_state(user_input)
 
-            # 用 chatbot 回复风格切换确认
-        return chatbot_response(user_input, self.current_style)
-
-
-
-
-        # 3️⃣ 根据当前状态生成回应
         if self.session_state == "comfort":
             user_prompt = "The user needs comfort: " + user_input
         else:
             user_prompt = "The user needs job support: " + user_input
 
+
         return chatbot_response(user_prompt, self.current_style)
+
+
+
+
+
 
