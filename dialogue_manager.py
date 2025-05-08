@@ -1,14 +1,6 @@
 # dialogue_manager.py
 from emotion_recognition import get_user_emotion
-from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
-from furhat_remote_api import FurhatRemoteAPI
 import random
-import time
-# furhat = FurhatRemoteAPI("localhost")
-# # 加载模型和tokenizer（只加载一次）
-# model_name = "facebook/blenderbot-400M-distill"
-# tokenizer = BlenderbotTokenizer.from_pretrained(model_name)
-# model = BlenderbotForConditionalGeneration.from_pretrained(model_name)
 
 
 def apply_state_gesture(furhat, state):
