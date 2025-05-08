@@ -33,10 +33,10 @@ def chatbot_response(user_input, style):
         print("start neutral style")
         prompt = "You are a neutral, professional coach. Respond objectively to: " + user_input
 
-    inputs = tokenizer(prompt, return_tensors="pt")
-    reply_ids = model.generate(**inputs)
-    response = tokenizer.decode(reply_ids[0], skip_special_tokens=True)
-    return response
+    # inputs = tokenizer(prompt, return_tensors="pt")
+    # reply_ids = model.generate(**inputs)
+    # response = tokenizer.decode(reply_ids[0], skip_special_tokens=True)
+    # return response
 
 class DialogueManager:
     def __init__(self):
@@ -61,29 +61,10 @@ class DialogueManager:
             return f"Already in {new_style} mode."
         return None
 
-    def detect_emotion_and_update_state(self, user_input):
-        """这里假设情绪分析函数返回固定值 → 你可以替换实际函数"""
-        polarity = get_user_emotion(user_input)
-        print(f"[Emotion] Detected polarity: {polarity}")
-        if polarity >= 0:
-            self.session_state = "support"
-        else:
-            self.session_state = "comfort"
-        print(f"[State Update] Current state: {self.session_state}")
 
 
-    def generate_response(self, user_input):
-        """综合处理用户输入 → 返回 chatbot 生成的回应"""
-
-        self.detect_emotion_and_update_state(user_input)
-
-        if self.session_state == "comfort":
-            user_prompt = "The user needs comfort: " + user_input
-        else:
-            user_prompt = "The user needs job support: " + user_input
 
 
-        return chatbot_response(user_prompt, self.current_style)
 
 
 
