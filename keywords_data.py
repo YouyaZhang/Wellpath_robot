@@ -52,7 +52,7 @@ topic_keywords = {
     ],
 
     "no_start_point": [
-        "don’t know how to start", "no idea where to begin", "how to begin",
+        "finding a start point", "don’t know how to start", "no idea where to begin", "how to begin",
         "first step unclear", "no entry point", "lost at the beginning",
         "don't know where to start job hunting","no idea how to start", "not sure where to start", "I’m stuck at the start",
     "how do I even start", "don’t know what the first step is",
@@ -66,7 +66,7 @@ topic_keywords = {
 
 questions_topic_keywords = {
     "interview_acquisition": [
-        "get an interview","land interviews", "receive interview", "how to get an interview","get interview","get opportunities","find opportunities"
+        "acquisition", "get an interview","land interviews", "receive interview", "how to get an interview","get interview","get opportunities","find opportunities"
         "how can I get interview opportunities", "tips for getting interviews",
         "how to increase interview chances", "where to find interviews",
         "best ways to get interviews", "how to get noticed by employers",
@@ -75,7 +75,7 @@ questions_topic_keywords = {
     ],
 
     "interview_preparation": [
-        "how to prepare for an interview", "how should I get ready for interviews",
+        "preparation", "how to prepare for an interview", "how should I get ready for interviews",
         "interview preparation tips", "what to do before an interview",
         "how to research before an interview", "how to mentally prepare for an interview",
         "how to feel confident before an interview", "what to bring to interviews",
@@ -87,65 +87,65 @@ questions_topic_keywords = {
     ],
 
     "interview_performance": [
-        "interview performance", "interview behavior", "answering questions",
+        "performance", "interview performance", "interview behavior", "answering questions",
         "confidence in interviews", "expressing yourself", "interview communication",
         "interview presence", "interview impression", "body language",
         "interview speaking", "eye contact", "dress code", "building rapport"
     ],
 
     "interview_adjustment": [
-        "interview failure", "interview rejection", "rejected after interview",
+        "adjustment", "interview failure", "interview rejection", "rejected after interview",
         "coping with rejection", "bouncing back", "improving after interview",
         "post-interview reflection", "interview feedback", "learning from failure",
         "interview outcomes", "dealing with disappointment"
     ],
 
     "resume_writing": [
-        "resume writing", "resume format", "resume content", "resume structure",
+        "writing", "resume writing", "resume format", "resume content", "resume structure",
         "student resume", "no experience resume", "strong resume",
         "resume summary", "resume bullet points", "highlighting experience",
         "personal branding", "resume templates", "write a resume","write resume"
     ],
 
     "resume_problems": [
-        "resume issues", "resume errors", "resume mistakes", "resume not working",
+        "problems", "resume issues", "resume errors", "resume mistakes", "resume not working",
         "ignored resume", "resume rejected", "no interview from resume",
         "resume feedback", "fixing resume", "resume optimization"
     ],
 
     "career_planning": [
-        "career planning", "career path", "career goals", "long-term goals",
+        "planning", "career planning", "career path", "career goals", "long-term goals",
         "career confusion", "future plans", "choosing a path", "career guidance",
         "uncertain career", "professional direction", "career decision making"
     ],
 
     "industry_choice": [
-        "industry choice", "company choice", "selecting industry",
+        "choice", "industry choice", "company choice", "selecting industry",
         "startup vs big company", "corporate vs research",
         "sector comparison", "industry preference",
         "foreign vs local company", "job offer comparison", "career field selection"
     ],
 
     "job_matching": [
-        "job fit", "job matching", "discovering strengths", "career alignment",
+        "matching", "job fit", "job matching", "discovering strengths", "career alignment",
         "personal interests vs major", "finding the right job",
         "suitable roles", "job confusion", "what job suits me", "career fit"
     ],
 
     "how_to_start": [
-        "starting job search", "job search first step", "job search beginning",
+        "how to start", "starting job search", "job search first step", "job search beginning",
         "how to begin", "job search roadmap", "getting started",
         "early stage job hunting", "initial job steps", "start applying"
     ],
 
     "platforms": [
-        "job platforms", "job boards", "job search websites",
+        "platforms", "job platforms", "job boards", "job search websites",
         "apps for jobs", "job portals", "where to apply",
         "job search channels", "top job sites", "online job tools"
     ],
 
     "job_strategy": [
-        "job search strategy", "application plan", "daily application",
+        "strategy", "job search strategy", "application plan", "daily application",
         "internship first", "search efficiency", "job search plan",
         "job hunting tactics", "resume sending frequency",
         "goal setting for job search", "job pacing"
@@ -154,3 +154,10 @@ questions_topic_keywords = {
 
 }
 
+# 主题到子主题的映射
+topic_to_subtopics = {
+    "interview": ["interview_acquisition", "interview_preparation", "interview_performance", "interview_adjustment"],
+    "resume": ["resume_writing", "resume_problems"],
+    "job_type": ["career_planning", "industry_choice", "job_matching"],
+    "no_start_point": ["how_to_start", "platforms", "job_strategy"]
+}
