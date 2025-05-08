@@ -44,8 +44,10 @@ def handle_emotion_and_topic(user_input, style, furhat):
 
     # 如果还找不到，使用兜底默认回应
     if response is None:
-        response = "Thanks for sharing. Let's explore more about what can I do for you. For example, is it about interviews, resume, or finding direction?"
-
+        if style == "warm":
+            response = "Thank you so much for sharing that with me. I'm here to support you through your job search journey. For example, would you like to talk about interviews, resume, or finding direction? I'm here to listen and help."
+        else: #netrual style
+            response = "Input received. For productive assistance, please specify your job search concern. Available topics: interviews, resume, or finding direction. What specific area requires assistance?"
     if furhat:
         positive_gestures = ["BigSmile", "Smile", "Nod", "BrowRaise"]
         negative_gestures = ["BrowFrown", "ExpressSad", "ExpressFear", "Thoughtful"]
